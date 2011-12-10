@@ -5,6 +5,7 @@ exec = require('child_process').exec;
 sys = require('sys');
 index = fs.readFileSync(__dirname + '/index.html', 'utf8');
 index = index.replace(/ENV_DEBUG/, sys.inspect(process.env));
+index = index.replace(/_HANDLEBARS_/, sys.inspect(handlebars));
 index = index.replace(/https:\/\/no\.de\/smartmachines\//, "https://no.de/smartmachines/" + process.env.SMF_ZONENAME);
 index_buffer = new Buffer(index)
 
