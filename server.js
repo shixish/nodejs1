@@ -1,13 +1,14 @@
-handlebars = require('handlebars');
+Handlebars = require('handlebars');
 http = require('http');
 fs = require('fs');
 exec = require('child_process').exec;
 sys = require('sys');
 index = fs.readFileSync(__dirname + '/index.html', 'utf8');
-index = index.replace(/ENV_DEBUG/, sys.inspect(process.env));
-index = index.replace(/_HANDLEBARS_/, sys.inspect(handlebars));
-index = index.replace(/https:\/\/no\.de\/smartmachines\//, "https://no.de/smartmachines/" + process.env.SMF_ZONENAME);
-index_buffer = new Buffer(index)
+template = Handlebars.compile(index);
+//index = index.replace(/ENV_DEBUG/, sys.inspect(process.env));
+//index = index.replace(/_HANDLEBARS_/, sys.inspect(handlebars));
+//index = index.replace(/https:\/\/no\.de\/smartmachines\//, "https://no.de/smartmachines/" + process.env.SMF_ZONENAME);
+index_buffer = new Buffer(template({'ENV_DEBUG':sys.inspect(process.env), 'HANDLEBARS':sys.inspect(handlebars)}))
 
 favicon = fs.readFileSync(__dirname + '/favicon.ico');
 
