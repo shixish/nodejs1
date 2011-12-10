@@ -1,16 +1,18 @@
-Handlebars = require('handlebars');
-http = require('http');
-fs = require('fs');
-exec = require('child_process').exec;
-sys = require('sys');
-index = fs.readFileSync(__dirname + '/index.html', 'utf8');
-template = Handlebars.compile(index);
-//index = index.replace(/ENV_DEBUG/, sys.inspect(process.env));
-//index = index.replace(/_HANDLEBARS_/, sys.inspect(handlebars));
-//index = index.replace(/https:\/\/no\.de\/smartmachines\//, "https://no.de/smartmachines/" + process.env.SMF_ZONENAME);
-index_buffer = new Buffer(template({'ENV_DEBUG':sys.inspect(process.env), 'HANDLEBARS':sys.inspect(Handlebars)}))
+var http = require('http'),
+    fs = require('fs'),
+    //exec = require('child_process').exec,
+    sys = require('sys');
 
-favicon = fs.readFileSync(__dirname + '/favicon.ico');
+var io = require('socket.io'),
+    _ = require('underscore')._,
+    backbone = require('backbone'),
+    Handlebars = require('handlebars');
+
+var index_html = fs.readFileSync(__dirname + '/index.html', 'utf8'),
+    template = Handlebars.compile(index_html),
+    template_data = {'ENV_DEBUG':sys.inspect(process.env), 'HANDLEBARS':sys.inspect(Handlebars)},
+    index_buffer = new Buffer(template(template_data)),
+    favicon = fs.readFileSync(__dirname + '/favicon.ico');
 
 server = http.createServer(function (req, res) {
   if (req.url === "/") {
