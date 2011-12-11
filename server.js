@@ -30,6 +30,26 @@ app.configure('production', function(){
   app.use(express.errorHandler()); 
 });
 
+// Handlebars Test Helpers and Partials
+
+hbs.registerHelper('link_to', function(context) {
+  return "<a href='" + context.url + "'>" + context.body + "</a>";
+});
+
+hbs.registerHelper('link_to2', function(title, context) {
+  return "<a href='/posts" + context.url + "'>" + title + "</a>"
+});
+
+hbs.registerHelper('list', function(items, fn) {
+  var out = "<ul>";
+  for(var i=0, l=items.length; i<l; i++) {
+    out = out + "<li>" + fn(items[i]) + "</li>";
+  }
+  return out + "</ul>";
+});
+
+hbs.registerPartial('link2', '<a href="/people/{{id}}">{{name}}</a>');
+
 // Routes
 
 //app.get('/', routes.index);
