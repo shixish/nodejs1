@@ -5,7 +5,7 @@
 
 var express = require('express');
 var app = module.exports = express.createServer();
-var io = require('socket.io').listen(app);
+var sio = require('socket.io');
 var routes = require('./routes');
 
 var util = require('util');
@@ -62,7 +62,7 @@ app.get('/', routes.index);
 app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
-
+var io = sio.listen(1337);
 io.sockets.on('connection', function (socket) {
   //socket.emit('messege', { hello: 'world' });
   socket.send('hi');
