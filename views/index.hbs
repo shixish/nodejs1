@@ -6,10 +6,11 @@
     console.log('connected');    
     //chat.emit('hi!');
   });
-  socket.on('news', function (data) {
+  socket.on('message', function (data) {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
   });
+  socket.on
 </script>
 
 <h1>{{title}}</h1>
