@@ -1,0 +1,14 @@
+{
+  "name": "remote-python-terminal",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "2.5.2",
+    //"jade": ">= 0.0.1",
+    "backbone": "*",
+    "handlebars": "*",
+    "hbs": "*",
+    "socket.io": "*",
+    "underscore": "*"
+  }
+}
