@@ -1,5 +1,9 @@
 <script>
-  var socket = io.connect('ws://shix.no.de');
+  var socket = io.connect('http://shix.no.de');
+  chat.on('connect', function () {
+    console.log('connected');    
+    //chat.emit('hi!');
+  });
   socket.on('news', function (data) {
     console.log(data);
     socket.emit('my other event', { my: 'data' });
