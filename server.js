@@ -59,7 +59,7 @@ hbs.registerPartial('link2', '<a href="/people/{{id}}">{{name}}</a>');
 
 app.get('/', routes.index);
 
-app.listen(8080);
+app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
 var io = sio.listen(app);
