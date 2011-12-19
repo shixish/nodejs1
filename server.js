@@ -11,6 +11,8 @@ var routes = require('./routes');
 var util = require('util');
 var hbs = require('hbs');
 
+var sys = require('sys');
+
 
 
 // Configuration
@@ -35,7 +37,8 @@ app.configure('production', function(){
 // Handlebars Test Helpers and Partials
 
 hbs.registerHelper('link_to', function(context) {
-  return "<a href='" + context.url + "'>" + context.body + "</a>";
+  return sys.inspect(io);  
+  //return "<a href='" + context.url + "'>" + context.body + "</a>";
 });
 
 hbs.registerHelper('link_to2', function(title, context) {
@@ -66,3 +69,11 @@ io.sockets.on('connection', function (socket) {
     //socket.emit('news', { hello: 'world' });
   });
 });
+
+/*
+var test = Backbone.Model.extend({
+  initialize: function() {
+  
+  }
+});
+*/
