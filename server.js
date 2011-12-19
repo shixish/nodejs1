@@ -62,10 +62,7 @@ app.get('/', routes.index);
 app.listen(80);
 console.log("Express server listening on port %d in %s mode", app.address().port, app.settings.env);
 
-var io = sio.listen(80);
-io.configure(function () {
-  io.set('transports', ['websocket']);
-});
+var io = sio.listen(app);
 io.sockets.on('connection', function (socket) {
   //socket.emit('messege', { hello: 'world' });
   socket.send('hi');
