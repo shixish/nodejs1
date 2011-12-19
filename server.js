@@ -2,14 +2,16 @@
 /**
  * Module dependencies.
  */
-var io = require('socket.io').listen(31337);
+
 var express = require('express');
+var app = module.exports = express.createServer();
+var io = require('socket.io').listen(app);
 var routes = require('./routes');
-  
+
 var util = require('util');
 var hbs = require('hbs');
 
-var app = module.exports = express.createServer();
+
 
 // Configuration
 
