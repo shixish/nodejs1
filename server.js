@@ -59,9 +59,11 @@ console.log("Express server listening on port %d in %s mode", app.address().port
 
 
 io.listen(31337);
-io.sockets.on('connection', function (socket) {
+console.error(io);
+/*io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);
+    
   });
-});
+});*/
