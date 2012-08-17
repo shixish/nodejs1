@@ -4,32 +4,17 @@
  */
 
 var express = require('express'),
-  app = module.exports = express.createServer(),
-  fs = require('fs'),
-  routes = require('./routes'),
-  util = require('util'),
-  path = require('path'),
-  hbs = require('hbs'),
-  now = require('now'), //http://nowjs.com/
-  assetManager = require('connect-assetmanager'), //https://github.com/mape/connect-assetmanager/
-  assetHandler = require('connect-assetmanager-handlers'), //https://github.com/mape/connect-assetmanager-handlers
-  lessMiddleware = require('less-middleware'), //https://github.com/emberfeather/less.js-middleware
-  less = require('less'),
-  parser = less.Parser();
+    app = module.exports = express.createServer(),
+    fs = require('fs'),
+    routes = require('./routes'),
+    util = require('util'),
+    path = require('path'),
+    hbs = require('hbs'),
+    now = require('now'), //http://nowjs.com/
+    assetManager = require('connect-assetmanager'), //https://github.com/mape/connect-assetmanager/
+    assetHandler = require('connect-assetmanager-handlers'), //https://github.com/mape/connect-assetmanager-handlers
+    lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 var pub_dir = __dirname + '/public';
-
-////doesnt work...
-//lessHandler = function (data, file, index, isLast, callback) {
-//    //console.log(data, file, index, isLast, callback);
-//    //console.log('extension:', path.extname(file));
-//    //callback('nothing');
-//    var _call = callback;
-//    parser.parse(data, function(a, b){
-//      console.log(arguments, b.toCSS());
-//      _call('data');
-//    });
-//    //callback('data');
-//};
 
 // Configuration
 app.configure(function(){
@@ -45,46 +30,45 @@ app.configure(function(){
     src: __dirname + '/public',
     compress: true,
     force: true,
-    once: false,
-    debug: true
+    once: false
   }));
-  app.use('/', assetManager({
-    'js': {
-      'route': /\/static\/js\/[0-9]+\/.*\.js/,
-      path: './public/js/',
-      dataType: 'javascript',
-      files: [
-        'libs/underscore-min.js',
-        'libs/backbone.js',
-        'plugins.js',
-        'script.js'
-      ],
-      'postManipulate': {
-        '^': [
-          assetHandler.uglifyJsOptimize
-        ]
-      }
-    },
-    //'css': {
-    //  'route': /\/static\/css\/.*\.css/,
-    //  path: './public/css/',
-    //  dataType: 'css',
-    //  files: [
-    //    'style.less',
-    //    'grid.less'
-    //  ],
-    //  'preManipulate':{
-    //    '^': [
-    //      lessHandler
-    //    ]
-    //  },
-    //  //'postManipulate': {
-    //  //  '^': [
-    //  //    assetHandler.yuiCssOptimize
-    //  //  ]
-    //  //}
-    //},
-  }), express.static(pub_dir));
+  //app.use('/', assetManager({
+  //  'js': {
+  //    'route': /\/static\/js\/[0-9]+\/.*\.js/,
+  //    path: './public/js/',
+  //    dataType: 'javascript',
+  //    files: [
+  //      'libs/underscore-min.js',
+  //      'libs/backbone.js',
+  //      'plugins.js',
+  //      'script.js'
+  //    ],
+  //    'postManipulate': {
+  //      '^': [
+  //        assetHandler.uglifyJsOptimize
+  //      ]
+  //    }
+  //  },
+  //  //'css': {
+  //  //  'route': /\/static\/css\/.*\.css/,
+  //  //  path: './public/css/',
+  //  //  dataType: 'css',
+  //  //  files: [
+  //  //    'style.less',
+  //  //    'grid.less'
+  //  //  ],
+  //  //  'preManipulate':{
+  //  //    '^': [
+  //  //      lessHandler
+  //  //    ]
+  //  //  },
+  //  //  //'postManipulate': {
+  //  //  //  '^': [
+  //  //  //    assetHandler.yuiCssOptimize
+  //  //  //  ]
+  //  //  //}
+  //  //},
+  //}), express.static(pub_dir));
   //app.use(assetManager({
   //  'js': {
   //      'route': /\/static\/js\/[0-9]+\/.*\.js/

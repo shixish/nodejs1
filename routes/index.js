@@ -7,7 +7,10 @@ exports.index = function(req, res){
   res.render('index', {
     title: 'Home',
     //script: css('style'),
-    templates: ['index.hbs']
+    templates: ['index.hbs'],
+    nothing: function(text){
+      return "<b>" + text + '</b>';
+    }
   });
 };
 
