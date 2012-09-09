@@ -4,15 +4,19 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', {
-    title: 'Home',
-    //script: css('style'),
-    templates: ['index.hbs'],
-    nothing: function(text){
-      return "<b>" + text + '</b>';
-    }
-  });
+  res.render('index.html');
 };
+
+//exports.index = function(req, res){
+//  res.render('index', {
+//    title: 'Home',
+//    //script: css('style'),
+//    templates: ['index.hbs'],
+//    nothing: function(text){
+//      return "<b>" + text + '</b>';
+//    }
+//  });
+//};
 
 //exports.index = function(req, res){
 //  res.render('index', {

@@ -3,6 +3,23 @@ var App = Em.Application.create({
   //rootElement: '#main',
 });
 
+App.Page = Em.Object.extend({
+  title: 'something'
+});
+
+App.pageController = Em.ArrayController.create({
+	content: [],
+	loadPages: function(){
+		var self = this;
+    self.pushObject(App.Page.create({title:'Home'}));
+		//$.getJSON('data/books.json', function(data) {
+		//	data.forEach(function(item){
+		//		
+		//	});
+		//});
+	}
+});
+
 App.MyView = Em.View.extend({
   mouseDown: function() {
     window.alert("hello world!");

@@ -5,24 +5,39 @@
 
 var express = require('express'),
     app = module.exports = express.createServer(),
-    fs = require('fs'),
+    //fs = require('fs'),
     routes = require('./routes'),
     util = require('util'),
-    path = require('path'),
-    hbs = require('hbs'),
+    //path = require('path'),
+    //hbs = require('hbs'),
     now = require('now'), //http://nowjs.com/
-    assetManager = require('connect-assetmanager'), //https://github.com/mape/connect-assetmanager/
-    assetHandler = require('connect-assetmanager-handlers'), //https://github.com/mape/connect-assetmanager-handlers
+    //assetManager = require('connect-assetmanager'), //https://github.com/mape/connect-assetmanager/
+    //assetHandler = require('connect-assetmanager-handlers'), //https://github.com/mape/connect-assetmanager-handlers
     lessMiddleware = require('less-middleware'); //https://github.com/emberfeather/less.js-middleware
 var pub_dir = __dirname + '/public';
 
 // Configuration
 app.configure(function(){
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'hbs');
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
+  //app.set('views', __dirname + '/views');
+  //app.set('view engine', 'hbs');
+  //app.use(express.bodyParser());
+  //app.use(express.methodOverride());
+  //app.use(app.router);
+  
+  // disable layout
+  app.set("view options", {layout: false});
+
+  // make a custom html template
+  //app.register('.html', {
+  //  compile: function(str, options){
+  //    console.log(str);
+  //    return function(locals){
+  //      console.log(str);
+  //      return str;
+  //    };
+  //  }
+  //});
+  
   app.use(express.static(pub_dir));
   //app.use(express.compiler({ src: pub_dir, enable: ['less'] }));
   //app.use(require('connect-assets')());
@@ -97,13 +112,13 @@ app.configure('production', function(){
 });
 
 // Handlebars Test Helpers and Partials
-hbs.registerHelper('loadTemplates', function() {
-  var ret = '';
-  for (var t in this.templates){
-    ret += fs.readFileSync(__dirname + '/views/templates/' + this.templates[t], 'utf8') + '\n';
-  }
-  return new hbs.SafeString(ret);
-});
+//hbs.registerHelper('loadTemplates', function() {
+//  var ret = '';
+//  for (var t in this.templates){
+//    ret += fs.readFileSync(__dirname + '/views/templates/' + this.templates[t], 'utf8') + '\n';
+//  }
+//  return new hbs.SafeString(ret);
+//});
 
 //hbs.registerHelper('link_to', function(context) {
 //  return sys.inspect(io);  
@@ -126,5 +141,8 @@ hbs.registerHelper('loadTemplates', function() {
 
 // Routes
 
-app.get('/', routes.index);
+//app.get('/', routes.index);
+//app.get('/', function(){
+//  
+//});
 app.listen(80);

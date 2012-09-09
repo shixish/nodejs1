@@ -41,13 +41,22 @@
           {{/view}}
         </script>
       </section>
-      <script type="text/x-handlebars" data-template-name="page">
+      <!--<script type="text/x-handlebars" data-template-name="page">
         {{#view App.page}}
           <section>
             <h1>{{title}}</h1>
             {{body}}
           </section>
         {{/view}}
+      </script>-->
+      <script type="text/x-handlebars">
+        {{#view Ember.Button target="App.pageController" action="loadPages"}}
+          Load Pages
+        {{/view}}
+      
+        {{#collection contentBinding="App.pagesController" tagName="ul"}}
+          <b>{{content.title}}</b> - {{content.author}}, <i>{{content.genre}}</i>
+        {{/collection}}
       </script>
     </div>
     <footer>
